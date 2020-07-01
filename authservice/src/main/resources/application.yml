@@ -1,0 +1,58 @@
+server:
+  port: 8081
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: package com.fsd.data
+#数据库连接
+spring:
+  application:
+    name: authservice
+  datasource:
+    url: jdbc:mysql://106.14.5.63:3306/fsd2020?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMutiQueries=true
+    username: mysql
+    password: 594Caoyizheng!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #邮件
+  mail:
+    host: smtp.163.com
+    username: yhyancy666@163.com
+    password: MVLNPLGAAIUYNODO
+    port: 465
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail:
+        imap:
+          ssl:
+            socketFactory:
+              fallback: false
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+            socketFactory:
+              class: com.fintech.modules.base.util.mail.MailSSLSocketFactory
+          starttls:
+            enable: false
+            required: false
+      test-connection: false
+
+fsd:
+  frontend:
+    hostname: http://localhost:4200
+
+#Eureka配置，服务注册到哪里
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: springcloud-provider-authservice8081 #修改Euerka上的默认描述信息
+
+#info配置
+info:
+  app.name: yancy-springcloud
+  company.name: fsd.yancystudy.com
+
+
+

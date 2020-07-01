@@ -1,0 +1,25 @@
+server:
+  port: 8082
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: package com.fsd.data
+#数据库连接
+spring:
+  application:
+    name: companyservice
+  datasource:
+    url: jdbc:mysql://106.14.5.63:3306/fsd2020?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMutiQueries=true
+    username: mysql
+    password: 594Caoyizheng!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#Eureka配置，服务注册到哪里
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: springcloud-provider-companyservice8082 #修改Euerka上的默认描述信息
+#info配置
+info:
+  app.name: yancy-springcloud
+  company.name: fsd.yancy_iposervice_study.com

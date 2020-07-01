@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fsd.data.mapper.IpoMapper">
+    <select id="listIpo" resultType="com.fsd.data.entity.IpoEntity">
+        select * from ipo_detail
+    </select>
+
+    <insert id="addIpo">
+ insert into ipo_detail(
+            company_name,
+	    	stock_exchange,
+	    	price_per_share,
+	    	total_num,
+	    	remark)
+	    	values(#{company_name},#{stock_exchange},#{price_per_share},#{total_num},#{remark})
+ </insert>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fsd.data.mapper.StockchartMapper">
+    <select id="getCompanyCode" resultType="String">
+		select company_code from company where company_name=#{companyName}
+	</select>
+
+	<!-- Single Company compare -->
+	<select id="getPrice1" resultType="com.fsd.data.entity.commonPriceReturn.PriceEntityReturn" >
+		select price,price_min as time  from stock_price_detail
+			where price_min between #{startTime1} and #{endTime1}
+				and company_code=#{code}
+	</select>
+	<select id="getPrice2" resultType="com.fsd.data.entity.commonPriceReturn.PriceEntityReturn" >
+		select price,price_min as time  from stock_price_detail
+			where price_min between #{startTime1} and #{endTime1}
+				and company_code=#{code}
+	</select>
+
+	<!-- Muti Company Compare -->
+	<select id="getMutiCompanyPrice1" resultType="com.fsd.data.entity.commonPriceReturn.PriceEntityReturn" >
+		select price,price_min as time  from stock_price_detail
+			where price_min between #{startTime} and #{endTime}
+				and company_code=#{code1}
+	</select>
+	<select id="getMutiCompanyPrice2" resultType="com.fsd.data.entity.commonPriceReturn.PriceEntityReturn" >
+		select price,price_min as time  from stock_price_detail
+			where price_min between #{startTime} and #{endTime}
+				and company_code=#{code2}
+	</select>
+
+	<!-- Single Sector -->
+	<select id="getSingleSectorPrice" resultType="com.fsd.data.entity.commonPriceReturn.PriceEntityReturn">
+		select
+			price_min as time,
+			AVG(price) as price
+		from
+			fsd2020.stock_price_detail spd
+			where spd.company_code IN (select company_code FROM fsd2020.company c where c.sector_name = #{name})
+			AND
+			spd.price_min between #{start} and #{end}
+		GROUP BY
+			spd.price_min
+	</select>
+</mapper>

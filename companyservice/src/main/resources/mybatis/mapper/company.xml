@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fsd.data.mapper.CompanyMapper">
+
+    <insert id="addCompany" parameterType="com.fsd.data.entity.CompanyEntity">
+	    insert into company
+	    (company_code,company_name,turnover, ceo, board_of_director, listed_in_se, sector_name, brife_write_up, stock_code, company_status)
+	    values (#{company_code},#{company_name},#{turnover}, #{ceo}, #{board_of_director}, #{listed_in_se},#{sector_name},#{brife_write_up},#{stock_code},#{company_status})
+	</insert>
+
+    <select id="listCompany" resultType="com.fsd.data.entity.CompanyEntity">
+		select * from company
+	</select>
+
+    <update id="disableCompany" parameterType="com.fsd.data.entity.CompanyEntity">
+		update company set company_status="Inactive" where company_code=#{company_code}
+	</update>
+
+	<update id="updateCompany" parameterType="com.fsd.data.entity.CompanyEntity">
+		update company set company_name=#{company_name},turnover=#{turnover},
+				ceo=#{ceo},board_of_director=#{board_of_director},listed_in_se=#{listed_in_se},sector_name=#{sector_name},
+				brife_write_up=#{brife_write_up},stock_code=#{stock_code},company_status=#{company_status}
+				where company_code=#{company_code}
+	</update>
+
+</mapper>
