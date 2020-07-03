@@ -12,12 +12,4 @@ pipeline {
             }
         }
     }
-    post {
-        always {
-            echo 'build and deploy finished'
-        }
-        failure {
-            echo 'build failed'
-        }
-    }
 }
